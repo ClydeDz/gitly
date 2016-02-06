@@ -1,0 +1,59 @@
+﻿<div class="imge" ng-app>
+    <div layout="row" layout-align="center center" class="header">
+       <h2>Username</h2>       
+    </div>
+</div>
+<div ng-cloak>
+    <md-content>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <!-----1 user----->
+            <md-tab>
+                <md-tab-label>
+                    <md-tooltip md-direction="top">User</md-tooltip>
+                    <md-icon class="material-icons">person</md-icon>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="md-padding">
+                        <div ng-include="'views/tab-views/user.html'"></div>
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            <!-----2 repo----->
+            <md-tab>
+                <md-tab-label>
+                    <md-tooltip md-direction="top">Repositories</md-tooltip>
+                    <md-icon class="material-icons">folder_special</md-icon>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="md-padding">
+                        <div ng-include="'views/tab-views/repositories.html'"></div>
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            <!---------3 following--------->
+            <md-tab>
+                <md-tab-label>
+                    <md-tooltip md-direction="top">Following</md-tooltip>
+                    <md-icon class="material-icons">person_add</md-icon>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="md-padding">                        
+                        <div ng-include="'views/tab-views/following.html'"></div>
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+            <!-----last followers----->
+            <md-tab>
+                <md-tab-label>
+                    <md-tooltip md-direction="top">Followers</md-tooltip>
+                    <md-icon class="material-icons">group</md-icon>
+                </md-tab-label>
+                <md-tab-body>
+                    <md-content class="md-padding">
+                        <div ng-include="'views/tab-views/followers.html'"></div>
+                    </md-content>
+                </md-tab-body>
+            </md-tab>
+        </md-tabs>
+    </md-content>
+</div>

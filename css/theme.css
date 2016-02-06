@@ -1,0 +1,43 @@
+﻿.carddemoBasicUsage .card-media {
+    background-color: #999999;
+}
+
+.imge {
+    min-height: 270px;
+    background: url('../assets/7.jpe');
+    width: 100%;
+    background-size: cover;
+    -moz-background-size: cover;
+    background-position: center;
+        background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+.fabToolbardemoBasicUsage md-fab-toolbar.md-right md-fab-trigger.align-with-text {
+    left: 7px;
+}
+
+.md-content.md-default-theme, md-content {
+    background-color: #eee;
+}
+
+body, html {
+    background-color: #eee;
+}
+
+.header{
+    padding-top:50px;
+    padding-bottom:50px;
+}
+
+.tabsdemoDynamicHeight md-content {
+  background-color: transparent !important; }
+  .tabsdemoDynamicHeight md-content md-tabs {
+    background: #f6f6f6;
+    border: 1px solid #e1e1e1; }
+    .tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
+      background: white; }
+  .tabsdemoDynamicHeight md-content h1:first-child {
+    margin-top: 0; }
+
