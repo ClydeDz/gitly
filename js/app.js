@@ -1,72 +1,107 @@
 ﻿angular
-  .module('sidenavDemo1', ['ngMaterial','ngRoute'])
+  .module('gitly', ['ngMaterial','ngRoute'])
   .config(['$routeProvider', function ($routeProvider) {
       $routeProvider
         .when('/', {templateUrl:"views/found.html"})
         .otherwise({ templateUrl: "views/not-found.html" });
   }])
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
-      $scope.toggleLeft = buildDelayedToggler('left');
-      $scope.toggleRight = buildToggler('right');
-      $scope.username = "ClydeDz";
+  .controller('AppCtrl',['$scope','$http', function ($scope,$http) {
+
+      /* flags */
+      $scope.pageLoad = true;
+      /* ***** */
+
       $scope.followersSearch = "";
-      $scope.project = {
-          description: 'Nuclear Missile Defense System',
-          rate: 500
+      $scope.followingSearch = "";
+      $scope.reposSearch = "";
+
+      $scope.githubUser = {
+          userName: "",
+          userBio: "",
+          userLogin:"",
+          userImage: "",
+          userUrl: "",
+          userFollowers: "",
+          userFollowing: "",
+          userEmail: "",
+          userSiteAdmin: "",
+          userRepos: "",
+          userBlog: "",
+          userLocation: "",
+          userHireable: ""
       };
-      $scope.contacts = [
-        'Marina Augustine',
-        'Oddr Sarno',
-        'Nick Giannopoulos',
-        'Narayana Garner',
-        'Anita Gros',
-        'Megan Smith',
-        'Tsvetko Metzger',
-        'Hector Simek',
-        'Some-guy withalongalastaname'
-      ];
-      $scope.isOpenRight = function () {
-          return $mdSidenav('right').isOpen();
+
+      $scope.githubRepos = [{
+          repoName: "",
+          repoUrl: "",
+          repoDescription: "",
+          repoWebsite: "",
+          repoLanguage: "",
+          repoForks: "",
+          repoWatchers:""
+      }];
+
+      $scope.githubFollowing = [{
+          followingLogin: "",
+          followingImage: "",
+          followingUrl: ""
+      }];
+
+      $scope.githubFollowers = [{
+          followingLogin: "",
+          followingImage: "",
+          followingUrl: ""
+      }];
+           
+      /*
+      data.items.push(
+    {id: "7", name: "Douglas Adams", type: "comedy"}
+);
+      */
+      
+      $scope.getUserDetails=function(x){
+          $http.get("https://api.github.com/users/clydedz")
+               .then(function (response) {
+                   $scope.githubUser.userName = response.data.name;
+                   $scope.githubUser.userBio = response.data.bio;
+                   $scope.githubUser.userLogin = response.data.login;
+                   $scope.githubUser.userImage = response.data.avatar_url;
+                   $scope.githubUser.userUrl = response.data.html_url;
+                   $scope.githubUser.userFollowers = response.data.followers;
+                   $scope.githubUser.userFollowing = response.data.following;
+                   $scope.githubUser.userEmail = response.data.email;
+                   $scope.githubUser.userWork = response.data.company;
+                   $scope.githubUser.userSiteAdmin = response.data.site_admin;
+                   $scope.githubUser.userRepos = response.data.public_repos;
+                   $scope.githubUser.userBlog = response.data.blog;
+                   $scope.githubUser.userLocation = response.data.location;
+                   $scope.githubUser.userHireable = response.data.hireable;
+                },
+                function () {
+
+                });
+      }
+
+      if ($scope.pageLoad == true) {
+          $scope.getUserDetails();
+          $scope.pageLoad = false;
+      }
+      
+
+      $scope.getUserRepos = function () {
+
       };
-      /**
-       * Supplies a function that will continue to operate until the
-       * time is up.
-       */
-      function debounce(func, wait, context) {
-          var timer;
-          return function debounced() {
-              var context = $scope,
-                  args = Array.prototype.slice.call(arguments);
-              $timeout.cancel(timer);
-              timer = $timeout(function () {
-                  timer = undefined;
-                  func.apply(context, args);
-              }, wait || 10);
-          };
-      }
-      /**
-       * Build handler to open/close a SideNav; when animation finishes
-       * report completion in console
-       */
-      function buildDelayedToggler(navID) {
-          return debounce(function () {
-              $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
-          }, 200);
-      }
-      function buildToggler(navID) {
-          return function () {
-              $mdSidenav(navID)
-                .toggle()
-                .then(function () {
-                    $log.debug("toggle " + navID + " is done");
-                });
-          }
-      }
-  })
+
+      $scope.getUserFollowers = function () {
+
+      };
+
+      $scope.getUserFollowing = function () {
+
+      };
+
+  }])
+
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
       $scope.close = function () {
           $mdSidenav('left').close()
