@@ -1,5 +1,5 @@
 ﻿<div layout="row" layout-align="center center">
-    <div  ng-cloak>
+    <div ng-cloak>
         <md-content class="md-padding" layout-xs="column" layout="row">
             <div flex-xs flex-gt-xs="50" layout="column">
                 <md-card>
@@ -12,76 +12,53 @@
                     </md-card-title>
                     <md-card-content>
                         <div><p>{{githubUser.userBio}}</p></div>
-                        <div><md-icon class="ion-android-pin gitly-icon"></md-icon>{{githubUser.userLocation}}</div>
+                        <div><md-icon class="material-icons">place</md-icon>{{githubUser.userLocation}}</div>
                         <md-card-actions layout="row" layout-align="end right">
                             <md-button ng-href="{{githubUser.userUrl}}" class="md-icon-button" aria-label="Github">
                                 <md-icon class="ion-social-github gitly-icon"></md-icon>
                             </md-button>
                             <md-button ng-href="{{githubUser.userBlog}}" class="md-icon-button" aria-label="Website">
-                                <md-icon class="ion-android-globe gitly-icon"></md-icon>
+                                <md-icon class="material-icons">public</md-icon>
                             </md-button>
                         </md-card-actions>
                     </md-card-content>
                 </md-card>
                 <md-card>
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Card with  image</span>
-                            <span class="md-subhead">Extra Large</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content layout="row" layout-align="space-between">
-                        <div class="md-media-xl card-media"></div>
-                        <md-card-actions layout="column">
-                            <md-button class="md-icon-button" aria-label="Favorite">
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Settings">
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Share">
-                            </md-button>
-                        </md-card-actions>
+                    <md-card-content layout="column" layout-align="center center" ng-class=" githubUser.userHireable==true? 'hireable-true' : hireable-false">
+                        <md-icon class="material-icons card-icons">work</md-icon>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline" ng-show="githubUser.userHireable">Yes, I'm hireable</span>
+                                <span class="md-headline" ng-hide="githubUser.userHireable">No, I'm not hireable</span>
+                            </md-card-title-text>
+                        </md-card-title>
                     </md-card-content>
                 </md-card>
             </div>
             <div flex-xs flex-gt-xs="50" layout="column">
                 <md-card>
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Card with image</span>
-                            <span class="md-subhead">Small</span>
-                        </md-card-title-text>
-                        <md-card-title-media>
-                            <div class="md-media-sm card-media"></div>
-                        </md-card-title-media>
-                    </md-card-title>
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
-                    </md-card-actions>
+                    <md-card-content layout="column" layout-align="center center" class="purple md-primary">
+                        <md-icon class="ion-code card-icons"></md-icon>
+                        <h2>
+                            {{ githubUser.userRepos }} Repositories
+                        </h2>
+                    </md-card-content>
                 </md-card>
                 <md-card>
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Card with imageddvdvdvdvdvdv</span>
-                            <span class="md-subhead">Medium</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content>
-                        <div ng-repeat="p in contacts | filter:followersSearch">
-                            <p>{{p}}</p>
-                        </div>
-                        <div>
-                            <md-input-container class="md-block" flex="90">
-                                <label>Search</label>
-                                <input name="followersSearch" ng-model="followersSearch">
-                            </md-input-container>
-                        </div>
+                    <md-card-content layout="column" layout-align="center center" class="purple">                        
+                        <md-icon class="material-icons card-icons">group</md-icon>
+                        <h2>
+                            {{ githubUser.userFollowers }} Followers
+                        </h2>
                     </md-card-content>
-
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
-                    </md-card-actions>
+                </md-card>
+                <md-card>
+                    <md-card-content layout="column" layout-align="center center" class="purple">
+                        <md-icon class="material-icons card-icons">person_add</md-icon>
+                        <h2>
+                            {{ githubUser.userFollowing }} Following
+                        </h2>
+                    </md-card-content>
                 </md-card>
             </div>
         </md-content>

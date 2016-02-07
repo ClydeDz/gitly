@@ -5,7 +5,7 @@
         .when('/', {templateUrl:"views/found.html"})
         .otherwise({ templateUrl: "views/not-found.html" });
   }])
-  .controller('AppCtrl',['$scope','$http', function ($scope,$http) {
+  .controller('AppCtrl',['$scope','$http','$window', function ($scope,$http,$window) {
 
       /* flags */
       $scope.pageLoad = true;
@@ -31,27 +31,28 @@
           userHireable: ""
       };
 
-      $scope.githubRepos = [{
-          repoName: "",
-          repoUrl: "",
-          repoDescription: "",
-          repoWebsite: "",
-          repoLanguage: "",
-          repoForks: "",
-          repoWatchers:""
-      }];
-
-      $scope.githubFollowing = [{
-          followingLogin: "",
-          followingImage: "",
-          followingUrl: ""
-      }];
-
-      $scope.githubFollowers = [{
-          followingLogin: "",
-          followingImage: "",
-          followingUrl: ""
-      }];
+      $scope.githubRepos = {};
+      //$scope.githubRepos = [{
+      //    repoName: "",
+      //    repoUrl: "",
+      //    repoDescription: "",
+      //    repoWebsite: "",
+      //    repoLanguage: "",
+      //    repoForks: "",
+      //    repoWatchers:""
+      //}];
+      $scope.githubFollowing = {};
+      //$scope.githubFollowing = [{
+      //    //followingLogin: "",
+      //    //followingImage: "",
+      //    //followingUrl: ""
+      //}];
+      $scope.githubFollowers = {};
+      //$scope.githubFollowers = [{
+      //    followingLogin: "",
+      //    followingImage: "",
+      //    followingUrl: ""
+      //}];
            
       /*
       data.items.push(
@@ -81,23 +82,58 @@
 
                 });
       }
-
-      if ($scope.pageLoad == true) {
-          $scope.getUserDetails();
-          $scope.pageLoad = false;
-      }
+           
       
-
+      //
       $scope.getUserRepos = function () {
+          $http.get("https://api.github.com/users/clydedz/repos")
+               .then(function (response) {
+                   $scope.githubRepos = response.data;
+                   //$scope.githubRepos.repoName = response.data.name;
+                   //$scope.githubRepos.repoUrl = response.data.name;
+                   //$scope.githubRepos.repoDescription = response.data.name;
+                   //$scope.githubRepos.repoWebsite = response.data.name;
+                   //$scope.githubRepos.repoLanguage = response.data.name;
+                   //$scope.githubRepos.repoForks = response.data.name;
+                   //$scope.githubRepos.repoWatchers = response.data.name;
+               },
+                function () {
 
+                });
       };
 
       $scope.getUserFollowers = function () {
+          $http.get("https://api.github.com/users/clydedz/followers")
+               .then(function (response) {
+                   console.log(response);
+                   $scope.githubFollowers = response.data;
+               },
+                function () {
 
+                });
       };
 
       $scope.getUserFollowing = function () {
+          $http.get("https://api.github.com/users/clydedz/following")
+               .then(function (response) {
+                   console.log(response);
+                   $scope.githubFollowing = response.data;
+               },
+                function () {
 
+                });
+      };
+
+      if ($scope.pageLoad == true) {
+          $scope.getUserDetails();
+          $scope.getUserRepos();
+          $scope.getUserFollowing();
+          $scope.getUserFollowers();
+          $scope.pageLoad = false;
+      }
+
+      $scope.navigateTo = function (to, event) {
+          $window.location = to;
       };
 
   }])

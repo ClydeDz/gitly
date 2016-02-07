@@ -1,82 +1,39 @@
 ﻿<div layout="row" layout-align="center center">
-    <div ng-cloak>
-        <md-content class="md-padding" layout-xs="column" layout="row">
-            <div flex-xs flex-gt-xs="50" layout="column">
+    <div flex-xs flex-gt-xs="70" ng-cloak>
+        <md-content>
+            <div>
                 <md-card>
-                    <img src="assets/Purple-square.jpg" class="md-card-image" alt="Washed Out">
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Full name</span>
-                            <span class="md-subhead">@Username</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button class="md-icon-button" aria-label="Favorite"><md-icon md-svg-icon="img/icons/favorite.svg"></md-icon></md-button>
-                        <md-button>Action 2</md-button>
-                    </md-card-actions>
-                </md-card>
-                <md-card>
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Card with  image</span>
-                            <span class="md-subhead">Extra Large</span>
-                        </md-card-title-text>
-                    </md-card-title>
-                    <md-card-content layout="row" layout-align="space-between">
-                        <div class="md-media-xl card-media"></div>
-                        <md-card-actions layout="column">
-                            <md-button class="md-icon-button" aria-label="Favorite">
-                                <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Settings">
-                                <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-                            </md-button>
-                            <md-button class="md-icon-button" aria-label="Share">
-                                <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-                            </md-button>
-                        </md-card-actions>
-                    </md-card-content>
-                </md-card>
-            </div>
-            <div flex-xs flex-gt-xs="50" layout="column">
-                <md-card>
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Card with image</span>
-                            <span class="md-subhead">Small</span>
-                        </md-card-title-text>
-                        <md-card-title-media>
-                            <div class="md-media-sm card-media"></div>
-                        </md-card-title-media>
-                    </md-card-title>
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
-                    </md-card-actions>
-                </md-card>
-                <md-card>
-                    <md-card-title>
-                        <md-card-title-text>
-                            <span class="md-headline">Card with imageddvdvdvdvdvdv</span>
-                            <span class="md-subhead">Medium</span>
-                        </md-card-title-text>
-                    </md-card-title>
+                    <md-card-header>
+                        <md-card-avatar>
+                            <img class="md-user-avatar" ng-src="{{ githubUser.userImage }}" />
+                        </md-card-avatar>
+                        <md-card-header-text>
+                            <span class="md-title">{{ githubUser.userName }}</span>
+                            <span class="md-subhead">{{ githubUser.userFollowers }} Followers</span>
+                        </md-card-header-text>
+                    </md-card-header>
                     <md-card-content>
-                        <div ng-repeat="p in contacts | filter:followersSearch">
-                            <p>{{p}}</p>
+                        <div ng-show="githubUser.userFollowers>0">
+                            <div>
+                                <md-input-container class="md-block" flex="90">
+                                    <label>Search this list</label>
+                                    <input name="username" ng-model="followersSearch" autocomplete="off">
+                                </md-input-container>
+                            </div>
+                            <div class="reposList">
+                                <md-list-item ng-click="navigateTo(gr.html_url, $event)" ng-repeat="gr in githubFollowers | filter:followersSearch">
+                                    <img class="md-avatar" ng-src="{{ gr.avatar_url }}" />
+                                    <h3 class="md-body-2">{{gr.login}}</h3>
+                                </md-list-item>
+                            </div>
                         </div>
-                        <div>
-                            <md-input-container class="md-block" flex="90">
-                                <label>Search</label>
-                                <input name="followersSearch" ng-model="followersSearch">
-                            </md-input-container>
+                        <div ng-show="githubUser.userFollowers<1">
+                            <div layout="column" layout-align="center center">
+                                <md-icon class="material-icons">thumb_down</md-icon>                                
+                                <p class="md-subhead">{{githubUser.userName}} has no followers</p>                                    
+                            </div>
                         </div>
                     </md-card-content>
-
-                    <md-card-actions layout="row" layout-align="end center">
-                        <md-button>Action 1</md-button>
-                        <md-button>Action 2</md-button>
-                    </md-card-actions>
                 </md-card>
             </div>
         </md-content>

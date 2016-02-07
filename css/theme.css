@@ -1,6 +1,25 @@
 ﻿.gitly-icon{
     font-size:20px;
 }
+.hireable-true{
+    background-color:forestgreen;
+    color:white;
+}
+
+.hireable-false{
+    background-color:forestgreen;
+    color:white;
+}
+
+.card-icons{
+    font-size:40px;
+    color:white;
+}
+
+.purple{
+    background-color:rebeccapurple;
+    color:white;
+}
 
 .carddemoBasicUsage .card-media {
     background-color: #999999;
@@ -45,3 +64,18 @@ body, html {
   .tabsdemoDynamicHeight md-content h1:first-child {
     margin-top: 0; }
 
+
+  .reposList{
+      max-height:400px;
+      overflow-y:auto;
+      overflow-x:hidden;
+      margin: -16px;
+      margin-top:10px;
+      margin-bottom:10px;
+  }
+  md-chips.md-default-theme .md-chips, md-chips .md-chips{
+      box-shadow: none;
+  }
+  .body{
+      font-family: 'Roboto', sans-serif;
+  }
