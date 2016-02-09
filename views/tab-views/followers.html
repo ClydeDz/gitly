@@ -1,41 +1,51 @@
-﻿<div layout="row" layout-align="center center">
-    <div flex-xs flex-gt-xs="70" ng-cloak>
-        <md-content>
-            <div>
-                <md-card>
-                    <md-card-header>
-                        <md-card-avatar>
-                            <img class="md-user-avatar" ng-src="{{ githubUser.userImage }}" />
-                        </md-card-avatar>
-                        <md-card-header-text>
-                            <span class="md-title">{{ githubUser.userName }}</span>
-                            <span class="md-subhead">{{ githubUser.userFollowers }} Followers</span>
-                        </md-card-header-text>
-                    </md-card-header>
-                    <md-card-content>
-                        <div ng-show="githubUser.userFollowers>0">
-                            <div>
-                                <md-input-container class="md-block" flex="90">
-                                    <label>Search this list</label>
-                                    <input name="username" ng-model="followersSearch" autocomplete="off">
-                                </md-input-container>
+﻿<div ng-show="userTabFlag">
+    <div layout="row" layout-align="center center">
+        <div flex-xs flex-gt-xs="70" ng-cloak>
+            <md-content>
+                <div>
+                    <md-card>
+                        <md-card-header>
+                            <md-card-avatar>
+                                <img class="md-user-avatar" ng-src="{{ githubUser.userImage }}" />
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">{{ githubUser.userName }}</span>
+                                <ng-pluralize class="md-subhead"
+                                              count="githubUser.userFollowers"
+                                              when="{'0': '{{ githubUser.userLogin }} has no followers',
+                                                    '1': '{{ githubUser.userLogin }} has {} follower',
+                                                    'other': '{{ githubUser.userLogin }} has {} followers'}">
+                                </ng-pluralize>
+                            </md-card-header-text>
+                        </md-card-header>
+                        <md-card-content>
+                            <div ng-show="githubUser.userFollowers>0">
+                                <div>
+                                    <md-input-container class="md-block" flex="90">
+                                        <label>Search this list</label>
+                                        <input name="username" ng-model="followersSearch" autocomplete="off">
+                                    </md-input-container>
+                                </div>
+                                <div class="reposList">
+                                    <md-list-item ng-click="navigateTo(gr.html_url, $event)" ng-repeat="gr in githubFollowers | filter:followersSearch">
+                                        <img class="md-avatar" ng-src="{{ gr.avatar_url }}" />
+                                        <h3 class="md-body-2">{{gr.login}}</h3>
+                                    </md-list-item>
+                                </div>
                             </div>
-                            <div class="reposList">
-                                <md-list-item ng-click="navigateTo(gr.html_url, $event)" ng-repeat="gr in githubFollowers | filter:followersSearch">
-                                    <img class="md-avatar" ng-src="{{ gr.avatar_url }}" />
-                                    <h3 class="md-body-2">{{gr.login}}</h3>
-                                </md-list-item>
+                            <div ng-show="githubUser.userFollowers<1">
+                                <div layout="column" layout-align="center center">
+                                    <md-icon class="material-icons">thumb_down</md-icon>
+                                    <p class="md-subhead">{{githubUser.userName}} has no followers</p>
+                                </div>
                             </div>
-                        </div>
-                        <div ng-show="githubUser.userFollowers<1">
-                            <div layout="column" layout-align="center center">
-                                <md-icon class="material-icons">thumb_down</md-icon>                                
-                                <p class="md-subhead">{{githubUser.userName}} has no followers</p>                                    
-                            </div>
-                        </div>
-                    </md-card-content>
-                </md-card>
-            </div>
-        </md-content>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </md-content>
+        </div>
     </div>
+</div>
+<div ng-hide="userTabFlag">
+    <ng-include src="'views/tab-views/broken.html'"></ng-include>
 </div>

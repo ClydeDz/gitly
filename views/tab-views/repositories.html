@@ -1,47 +1,58 @@
-﻿<div layout="row" layout-align="center center">
-    <div flex-xs flex-gt-xs="70" ng-cloak>
-        <md-content >
-            <div >
-                <md-card >
-                    <md-card-header>
-                        <md-card-avatar>
-                            <img class="md-user-avatar" ng-src="{{ githubUser.userImage }}" />
-                        </md-card-avatar>
-                        <md-card-header-text>
-                            <span class="md-title">{{ githubUser.userName }}</span>
-                            <span class="md-subhead">{{ githubUser.userRepos }} Repositories</span>
-                        </md-card-header-text>
-                    </md-card-header>
-                    <md-card-content>
-                        <div ng-show="githubUser.userRepos>0">
-                            <div>
-                                <md-input-container class="md-block" flex="90">
-                                    <label>Search repositories</label>
-                                    <input name="username" ng-model="reposSearch" autocomplete="off">
-                                </md-input-container>
-                            </div>
-                            <div class="reposList">
-                                <md-list>
-                                    <md-list-item ng-click="navigateTo(gr.html_url, $event)" ng-repeat="gr in githubRepos | filter:reposSearch" >
-                                        <div>
-                                            <h3 class="md-body-2">{{gr.name}}</h3>
-                                            <h4 class="md-caption">{{gr.homepage}}</h4>
-                                            <p>{{gr.description}}</p>
-                                            <div ng-show="gr.language!=null">
-                                                <md-chips>
-                                                    <md-chip>{{gr.language}}</md-chip>
-                                                </md-chips>
+﻿<div ng-show="true">
+    <div layout="row" layout-align="center center">
+        <div flex-xs flex-gt-xs="70" ng-cloak>
+            <md-content>
+                <div>
+                    <md-card>
+                        <md-card-header>
+                            <md-card-avatar>
+                                <img class="md-user-avatar" ng-src="{{ githubUser.userImage }}" />
+                            </md-card-avatar>
+                            <md-card-header-text>
+                                <span class="md-title">{{ githubUser.userName }}</span>
+                                <ng-pluralize class="md-subhead"
+                                              count="githubUser.userRepos"
+                                              when="{'0': '{{ githubUser.userLogin }} has no repositories',
+                                                    '1': '{{ githubUser.userLogin}} has {} repository',
+                                                    'other': '{{githubUser.userLogin}} has {} repositories'}">
+                                </ng-pluralize>
+                            </md-card-header-text>
+                        </md-card-header>
+                        <md-card-content>
+                            <div ><!--ng-show="githubUser.userRepos>0"-->
+                                <div>
+                                    <md-input-container class="md-block" flex="90">
+                                        <label>Search repositories</label>
+                                        <input name="username" ng-model="reposSearch" autocomplete="off">
+                                    </md-input-container>
+                                </div>
+                                <div class="reposList">
+                                    <md-list>
+                                        <md-list-item ng-click="navigateTo(gr.html_url, $event)" target="_blank" ng-repeat="gr in githubRepos | filter:reposSearch">
+                                            <div class="repo-container">
+                                                <div class="repo-headline"><b>{{gr.name}}</b></div>
+                                                <div>{{gr.homepage}}</div>
+                                                <div>{{gr.description}}</div>
+                                                <span ng-show="gr.language!=null">
+                                                    <md-chips>
+                                                        <md-chip>{{gr.language}}</md-chip>
+                                                    </md-chips>
+                                                </span>
+                                                <span>{{ gr.watchers }} <md-icon class="material-icon" aria-label="{{ gr.watchers }}">visibility</md-icon></span>
+                                                <span>{{ gr.forks }} <md-icon class="ion-fork-repo" aria-label="{{ gr.forks }}"></md-icon></span>
                                             </div>
-                                            <span>{{ gr.watchers }} <md-icon class="material-icon" aria-label="{{ gr.watchers }}">visibility</md-icon></span>
-                                            <span>{{ gr.forks }} <md-icon class="ion-fork-repo" aria-label="{{ gr.forks }}"></md-icon></span>
-                                        </div>
-                                    </md-list-item>
-                                </md-list>
-                            </div>                            
-                        </div>
-                    </md-card-content>
-                </md-card>
-            </div>
-        </md-content>
+                                            <md-divider></md-divider>
+                                        </md-list-item>                                      
+                                    </md-list>
+                                </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </md-content>
+        </div>
     </div>
+</div>
+<div ng-hide="true">
+    <ng-include src="'views/tab-views/broken.html'"></ng-include>
 </div>

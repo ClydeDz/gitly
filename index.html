@@ -1,4 +1,4 @@
-﻿<html lang="en">
+﻿<html lang="en" >
 <head>
     <title>Gitly</title>
     <!-- Angular Material style sheet -->
@@ -7,27 +7,49 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link href="css/theme.css" rel="stylesheet" />
+    <script src="http://platform.twitter.com/widgets.js"></script>
 </head>
 <body ng-app="gitly" ng-cloak>
     <div ng-controller="AppCtrl">
         <md-content>
-
-            <md-toolbar>
-                <div class="md-toolbar-tools">
-                    <div layout="row">
-                       <img src="assets/gitly_light.png" height="30" width="30" /><h2>Gitly</h2>
-                    </div>
-                    <span flex></span>
-                    <md-button class="md-icon-button" aria-label="Favorite">
-                        <md-icon class="material-icons">search</md-icon>
-                    </md-button>
-                </div>
-            </md-toolbar>
-
+            <div ng-include="'views/toolbar.html'"></div>
             <div ng-view></div>
-
+            <md-divider></md-divider>
+            <div layout="row" ng-controller="FooterController" ng-cloak>
+                <div flex-xs flex-gt-xs="40">
+                    <md-content flex layout-padding>
+                        <md-button class="md-primary" href="http://goo.gl/8yXVaA" target="_blank">Crafted by Clyde D'Souza</md-button>
+                    </md-content>
+                </div>
+                <div class="lock-size fab-speed-button">
+                    <md-fab-speed-dial md-open="isOpen" md-direction="up"
+                                       ng-class="selectedMode">
+                        <md-fab-trigger>
+                            <md-button aria-label="menu" class="md-fab md-mini md-primary">
+                                <md-tooltip md-direction="top">Share Gitly with your friends</md-tooltip>
+                                <md-icon class="material-icons">share</md-icon>
+                            </md-button>
+                        </md-fab-trigger>
+                        <md-fab-actions>
+                            <md-button aria-label="Twitter" ng-click="share('tweet')" class="md-fab md-accent md-mini">
+                                <md-tooltip md-direction="top">Share on Twitter</md-tooltip>
+                                <md-icon class="ion-social-twitter" aria-label="Twitter"></md-icon>
+                            </md-button>
+                            <md-button aria-label="Facebook" ng-click="share('fb')" class="md-fab md-accent md-mini">
+                                <md-tooltip md-direction="top">Share on Facebook</md-tooltip>
+                                <md-icon class="ion-social-facebook" aria-label="Facebook"></md-icon>
+                            </md-button>
+                            <md-button aria-label="Google Plus" ng-click="share('google')" class="md-fab md-accent md-mini">
+                                <md-tooltip md-direction="top">Share on Google Plus</md-tooltip>
+                                <md-icon class="ion-social-googleplus" aria-label="Google Plus"></md-icon>
+                            </md-button>
+                        </md-fab-actions>
+                    </md-fab-speed-dial>
+                </div>
+            </div>
         </md-content>
     </div>
+
     <!-- Angular Material requires Angular.js Libraries -->
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>

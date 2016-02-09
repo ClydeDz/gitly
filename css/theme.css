@@ -36,6 +36,29 @@
     background-attachment: fixed;
 }
 
+.imge.not-found{
+    height:80%;
+}
+
+.imge.not-found>div>h2{
+    color:white;
+    padding:10px;
+    font-weight: 400;
+    text-align:center;
+}
+
+.imge.not-found>div>a>span,.imge.not-found>div>a.md-button.md-default-theme.md-hue-1.md-primary:not([disabled]) md-icon, a.md-button.md-hue-1.md-primary:not([disabled]) md-icon, .md-button.md-default-theme.md-hue-1.md-primary:not([disabled]) md-icon, .md-button.md-hue-1.md-primary:not([disabled]) md-icon{
+    color:white;
+}
+
+md-input-container .md-errors-spacer{
+    display:none;
+}
+
+.toolbar-label{
+    font-size:14px;
+}
+
 
 .fabToolbardemoBasicUsage md-fab-toolbar.md-right md-fab-trigger.align-with-text {
     left: 7px;
@@ -78,4 +101,21 @@ body, html {
   }
   .body{
       font-family: 'Roboto', sans-serif;
+  }
+
+  .fab-speed-button{
+      position:absolute;
+      bottom:5px;
+      z-index:99;
+      right:2px;
+  }
+
+  /* repo */
+  .repo-container{
+      padding-top:25px;
+      padding-bottom:25px;
+      line-height: 26px;
+  }
+  .repo-headline{
+      color:rebeccapurple;
   }
