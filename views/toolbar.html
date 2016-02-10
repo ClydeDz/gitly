@@ -48,12 +48,12 @@
                 <md-icon class="material-icons">arrow_back</md-icon>
             </md-button>
             <div flex layout="row" layout-align="center center">
-                <md-input-container flex="90">
-                    <label class="toolbar-label">Username</label>
-                    <input ng-model="toolbarSearch" autocomplete="off" />
-                </md-input-container>
+                    <md-input-container flex="90">
+                        <label class="toolbar-label">Username</label>
+                        <input ng-model="toolbarSearch" autocomplete="off" />
+                    </md-input-container>
             </div>
-            <md-button class="md-icon-button" aria-label="Close" ng-click="clearGithubUserName()">
+            <md-button class="md-icon-button" aria-label="Close" ng-init="toolbarSearch==''" ng-click="clearGithubUserName()">
                 <md-tooltip md-direction="bottom">Clear</md-tooltip>
                 <md-icon class="material-icons">close</md-icon>
             </md-button>

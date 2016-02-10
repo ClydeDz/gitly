@@ -2,8 +2,8 @@
 .module('gitly', ['ngMaterial', 'ngRoute', 'ngAnimate'])
 .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
-    .when('/', { templateUrl: "views/found.html", controller:"AppCtrl" })
-    .otherwise({ templateUrl: "views/not-found.html", controller:"NotFoundController"});
+    .when('/', { templateUrl: "views/found.html"})
+    .otherwise({ templateUrl: "views/not-found.html", controller: "NotFoundController" });
 }])
 .controller('AppCtrl', ['$scope', '$http', '$window', '$mdDialog', 'Page', function ($scope, $http, $window, $mdDialog, Page) {
 
@@ -60,7 +60,8 @@
 
 
     $scope.clearGithubUserName = function () {
-        $scope.githubUserName = "";
+        $scope.toolbarSearch = "";
+        console.log($scope.toolbarSearch);
         console.log("inside x ");
     };
 
@@ -179,9 +180,9 @@
                 if (response.status == "200") {
                     console.log("calling func with " + response.data.login);
                     $scope.getUserDetails(response.data.login);
-                    $scope.getuserrepos(response.data.login);
-                    $scope.getuserfollowing(response.data.login);
-                    $scope.getuserfollowers(response.data.login);
+                    $scope.getUserRepos(response.data.login);
+                    $scope.getUserFollowing(response.data.login);
+                    $scope.getUserFollowers(response.data.login);
                 }
                 else {
                     $scope.showAlert();

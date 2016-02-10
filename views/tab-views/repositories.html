@@ -9,13 +9,13 @@
                                 <img class="md-user-avatar" ng-src="{{ githubUser.userImage }}" />
                             </md-card-avatar>
                             <md-card-header-text>
-                                <span class="md-title">{{ githubUser.userName }}</span>
+                                <span class="md-title">{{ githubUser.userName }}</span>  
                                 <ng-pluralize class="md-subhead"
                                               count="githubUser.userRepos"
-                                              when="{'0': '{{ githubUser.userLogin }} has no repositories',
-                                                    '1': '{{ githubUser.userLogin}} has {} repository',
+                                              when="{'0': '{githubUser.userLogin } has no repositories',
+                                                    'one': '{{ githubUser.userLogin}} has {} repository',
                                                     'other': '{{githubUser.userLogin}} has {} repositories'}">
-                                </ng-pluralize>
+                                </ng-pluralize>                              
                             </md-card-header-text>
                         </md-card-header>
                         <md-card-content>
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="reposList">
                                     <md-list>
-                                        <md-list-item ng-click="navigateTo(gr.html_url, $event)" target="_blank" ng-repeat="gr in githubRepos | filter:reposSearch">
+                                        <md-list-item class="list-item" ng-click="navigateTo(gr.html_url, $event)" target="_blank" ng-repeat="gr in githubRepos | filter:reposSearch">
                                             <div class="repo-container">
                                                 <div class="repo-headline"><b>{{gr.name}}</b></div>
                                                 <div>{{gr.homepage}}</div>

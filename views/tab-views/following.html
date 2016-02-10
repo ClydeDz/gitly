@@ -9,13 +9,13 @@
                                 <img class="md-user-avatar" ng-src="{{ githubUser.userImage }}" />
                             </md-card-avatar>
                             <md-card-header-text>
-                                <span class="md-title">{{ githubUser.userName }}</span>
-                                <ng-pluralize class="md-subhead" 
+                                <span class="md-title">{{ githubUser.userName }}</span> 
+                                <ng-pluralize class="md-subhead"
                                               count="githubUser.userFollowing"
                                               when="{'0': '{{ githubUser.userLogin }} follows no one',
-                                                    '1': 'Following {} person',
+                                                    'one': 'Following {} person',
                                                     'other': 'Following {}'}">
-                                </ng-pluralize>
+                                </ng-pluralize>                               
                             </md-card-header-text>
                         </md-card-header>
                         <md-card-content>
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="reposList">
                                     <md-list>
-                                        <md-list-item ng-click="navigateTo(gr.html_url, $event)" ng-repeat="gr in githubFollowing | filter:followingSearch">
+                                        <md-list-item class="list-item" ng-click="navigateTo(gr.html_url, $event)" ng-repeat="gr in githubFollowing | filter:followingSearch">
                                             <img class="md-avatar" ng-src="{{ gr.avatar_url }}" />
                                             <h3 class="md-body-2">{{gr.login}}</h3>
                                         </md-list-item>

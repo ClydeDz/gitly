@@ -16,16 +16,18 @@
                             <div><md-icon class="material-icons">place</md-icon>{{githubUser.userLocation}}</div>
                             <md-card-actions layout="row" layout-align="end right">
                                 <md-button ng-href="{{githubUser.userUrl}}" class="md-icon-button" aria-label="Github">
+                                    <md-tooltip md-direction="top">GitHub profile</md-tooltip>
                                     <md-icon class="ion-social-github gitly-icon"></md-icon>
                                 </md-button>
                                 <md-button ng-href="{{githubUser.userBlog}}" class="md-icon-button" aria-label="Website">
+                                    <md-tooltip md-direction="top">Website</md-tooltip>
                                     <md-icon class="material-icons">public</md-icon>
                                 </md-button>
                             </md-card-actions>
                         </md-card-content>
                     </md-card>
                     <md-card ng-show="githubUser.userHireable!=null">
-                        <md-card-content layout="column" layout-align="center center" ng-class=" githubUser.userHireable==true? 'hireable-true' : hireable-false">
+                        <md-card-content layout="column" layout-align="center center" ng-class="githubUser.userHireable==true? 'hireable-true' : hireable-false">
                             <md-icon class="material-icons card-icons">work</md-icon>
                             <md-card-title>
                                 <md-card-title-text>
@@ -38,23 +40,23 @@
                 </div>
                 <div flex-xs flex-gt-xs="50" layout="column">
                     <md-card>
-                        <md-card-content layout="column" layout-align="center center" class="purple md-primary">
-                            <md-icon class="ion-code card-icons"></md-icon>
-                            <ng-pluralize class="md-title"
+                        <md-card-content layout="column" layout-align="center center" class="purple">
+                            <md-icon class="ion-code card-icons"></md-icon>  
+                            <ng-pluralize class="md-title userTab-cardTitle"
                                           count="githubUser.userRepos"
                                           when="{'0': '{} repositories',
-                                                    '1': '{} repository',
+                                                    'one': '{} repository',
                                                     'other': '{} repositories'}">
-                            </ng-pluralize>
+                            </ng-pluralize>                         
                         </md-card-content>
                     </md-card>
                     <md-card>
-                        <md-card-content layout="column" layout-align="center center" class="purple">
+                        <md-card-content layout="column" layout-align="center center" class="pink">
                             <md-icon class="material-icons card-icons">group</md-icon>
-                            <ng-pluralize class="md-title"
+                            <ng-pluralize class="md-title userTab-cardTitle"
                                           count="githubUser.userFollowers"
                                           when="{'0': '{} followers',
-                                                    '1': '{} follower',
+                                                    'one': '{} follower',
                                                     'other': '{} followers'}">
                             </ng-pluralize>
                         </md-card-content>
@@ -62,10 +64,10 @@
                     <md-card>
                         <md-card-content layout="column" layout-align="center center" class="purple">
                             <md-icon class="material-icons card-icons">person_add</md-icon>
-                            <ng-pluralize class="md-title"
+                            <ng-pluralize class="md-title userTab-cardTitle"
                                           count="githubUser.userFollowing"
                                           when="{'0': 'Following {}',
-                                                    '1': 'Following {}',
+                                                    'one': 'Following {}',
                                                     'other': 'Following {}'}">
                             </ng-pluralize>
                         </md-card-content>
