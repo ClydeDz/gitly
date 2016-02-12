@@ -4,17 +4,22 @@
             <md-content>
                 <div>
                     <md-card>
-                        <div layout="row" layout-align="center center"><img ng-src="{{githubUser.userImage}}" alt="GitHub user profile photo" class="md-card-image" width="240" height="240"></div>
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">{{githubUser.userName}}</span>
-                                <span class="md-subhead">@{{githubUser.userLogin}}</span>
-                            </md-card-title-text>
-                        </md-card-title>
+                        <md-card-header>
+                            <div layout="row" layout-align="center center"><img ng-src="{{githubUser.userImage}}" alt="GitHub user profile photo" class="md-card-image" width="240" height="240"></div>
+                            <md-card-title>
+                                <md-card-title-text>
+                                    <span class="md-headline">{{githubUser.userName}}</span>
+                                    <span class="md-subhead">@{{githubUser.userLogin}}</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                        </md-card-header>
                         <md-card-content>
                             <md-divider></md-divider>                            
-                            <div>
-                                <p ng-show="githubUser.userBio!=null" class="userTab-cardListItem">{{githubUser.userBio}}</p>
+                            <md-content>
+                                <p ng-show="githubUser.userBio!=null" class="userTab-cardListItem">
+                                    <md-icon class="material-icons">work</md-icon>
+                                    <span>{{githubUser.userBio}}</span>
+                                </p>
                                 <p class="userTab-cardListItem">
                                     <md-icon class="material-icons">work</md-icon>
                                     <span ng-show="githubUser.userHireable">Yes, I'm hireable</span>
@@ -44,7 +49,7 @@
                                                 'other': 'Following {}'}">
                                     </ng-pluralize>
                                 </p>
-                            </div>
+                            </md-content>
                             <md-divider></md-divider>                            
                             <md-card-actions layout="row" layout-align="end right">
                                 <md-button ng-href="{{githubUser.userUrl}}" class="md-icon-button" aria-label="Github">
