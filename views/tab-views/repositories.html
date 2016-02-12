@@ -1,4 +1,4 @@
-﻿<div ng-show="true">
+﻿<div ng-show="userTabFlag" >
     <div layout="row" layout-align="center center">
         <div flex-xs flex-gt-xs="70" ng-cloak>
             <md-content>
@@ -53,6 +53,6 @@
         </div>
     </div>
 </div>
-<div ng-hide="true">
+<div ng-hide="userTabFlag">
     <ng-include src="'views/tab-views/broken.html'"></ng-include>
 </div>
