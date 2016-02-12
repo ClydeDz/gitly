@@ -1,9 +1,6 @@
 ﻿<div class="userTab-container" ng-show="userTabFlag" ng-cloak>
     <div layout="row" layout-align="center center">
-        <md-card>
-            <md-card-content>
-
-                <md-content class="md-padding" layout-xs="column" layout="row">
+                <div class="md-padding" layout-xs="column" layout="row">
                     <div flex-xs flex-gt-xs="50" layout="column">
                         <md-card>
                             <div layout="row" layout-align="center center"><img ng-src="{{githubUser.userImage}}" class="md-card-image" width="240" height="240"></div>
@@ -75,11 +72,7 @@
                             </md-card-content>
                         </md-card>
                     </div>
-                </md-content>
-
-            </md-card-content>
-        </md-card>     
-        
+                </div>
     </div>
 </div>
 <div ng-hide="userTabFlag">
