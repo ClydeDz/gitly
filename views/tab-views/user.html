@@ -1,78 +1,66 @@
-﻿<div class="userTab-container" ng-show="userTabFlag" ng-cloak>
+﻿<div ng-show="userTabFlag">
     <div layout="row" layout-align="center center">
-                <div class="md-padding" layout-xs="column" layout="row">
-                    <div flex-xs flex-gt-xs="50" layout="column">
-                        <md-card>
-                            <div layout="row" layout-align="center center"><img ng-src="{{githubUser.userImage}}" class="md-card-image" width="240" height="240"></div>
-                            <md-card-title>
-                                <md-card-title-text>
-                                    <span class="md-headline">{{githubUser.userName}}</span>
-                                    <span class="md-subhead">@{{githubUser.userLogin}}</span>
-                                </md-card-title-text>
-                            </md-card-title>
-                            <md-card-content>
-                                <div><p>{{githubUser.userBio}}</p></div>
-                                <div><md-icon class="material-icons">place</md-icon>{{githubUser.userLocation}}</div>
-                                <md-card-actions layout="row" layout-align="end right">
-                                    <md-button ng-href="{{githubUser.userUrl}}" class="md-icon-button" aria-label="Github">
-                                        <md-tooltip md-direction="top">GitHub profile</md-tooltip>
-                                        <md-icon class="ion-social-github gitly-icon"></md-icon>
-                                    </md-button>
-                                    <md-button ng-href="{{githubUser.userBlog}}" class="md-icon-button" aria-label="Website">
-                                        <md-tooltip md-direction="top">Website</md-tooltip>
-                                        <md-icon class="material-icons">public</md-icon>
-                                    </md-button>
-                                </md-card-actions>
-                            </md-card-content>
-                        </md-card>
-                        <md-card ng-show="githubUser.userHireable!=null">
-                            <md-card-content layout="column" layout-align="center center" ng-class="githubUser.userHireable==true? 'hireable-true' : hireable-false">
-                                <md-icon class="material-icons card-icons">work</md-icon>
-                                <md-card-title>
-                                    <md-card-title-text>
-                                        <span class="md-headline" ng-show="githubUser.userHireable">Yes, I'm hireable</span>
-                                        <span class="md-headline" ng-hide="githubUser.userHireable">No, I'm not hireable</span>
-                                    </md-card-title-text>
-                                </md-card-title>
-                            </md-card-content>
-                        </md-card>
-                    </div>
-                    <div flex-xs flex-gt-xs="50" layout="column">
-                        <md-card>
-                            <md-card-content layout="column" layout-align="center center" class="purple">
-                                <md-icon class="ion-code card-icons"></md-icon>
-                                <ng-pluralize class="md-title userTab-cardTitle"
-                                              count="githubUser.userRepos"
-                                              when="{'0': '{} repositories',
-                                                    'one': '{} repository',
-                                                    'other': '{} repositories'}">
-                                </ng-pluralize>
-                            </md-card-content>
-                        </md-card>
-                        <md-card>
-                            <md-card-content layout="column" layout-align="center center" class="pink">
-                                <md-icon class="material-icons card-icons">group</md-icon>
-                                <ng-pluralize class="md-title userTab-cardTitle"
-                                              count="githubUser.userFollowers"
-                                              when="{'0': '{} followers',
-                                                    'one': '{} follower',
-                                                    'other': '{} followers'}">
-                                </ng-pluralize>
-                            </md-card-content>
-                        </md-card>
-                        <md-card>
-                            <md-card-content layout="column" layout-align="center center" class="purple">
-                                <md-icon class="material-icons card-icons">person_add</md-icon>
-                                <ng-pluralize class="md-title userTab-cardTitle"
-                                              count="githubUser.userFollowing"
-                                              when="{'0': 'Following {}',
-                                                    'one': 'Following {}',
-                                                    'other': 'Following {}'}">
-                                </ng-pluralize>
-                            </md-card-content>
-                        </md-card>
-                    </div>
+        <div flex-xs flex-gt-xs="60" ng-cloak>
+            <md-content>
+                <div>
+                    <md-card>
+                        <div layout="row" layout-align="center center"><img ng-src="{{githubUser.userImage}}" alt="GitHub user profile photo" class="md-card-image" width="240" height="240"></div>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">{{githubUser.userName}}</span>
+                                <span class="md-subhead">@{{githubUser.userLogin}}</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <md-divider></md-divider>                            
+                            <div>
+                                <p ng-show="githubUser.userBio!=null" class="userTab-cardListItem">{{githubUser.userBio}}</p>
+                                <p class="userTab-cardListItem">
+                                    <md-icon class="material-icons">work</md-icon>
+                                    <span ng-show="githubUser.userHireable">Yes, I'm hireable</span>
+                                    <span ng-hide="githubUser.userHireable">No, I'm not hireable</span>
+                                </p>
+                                <p class="userTab-cardListItem">
+                                    <md-icon class="ion-code"></md-icon>
+                                    <ng-pluralize count="githubUser.userRepos"
+                                                  when="{'0': '{} repositories',
+                                                'one': '{} repository',
+                                                'other': '{} repositories'}">
+                                    </ng-pluralize>
+                                </p>
+                                <p class="userTab-cardListItem">
+                                    <md-icon class="material-icons">group</md-icon>
+                                    <ng-pluralize count="githubUser.userFollowers"
+                                                  when="{'0': '{} followers',
+                                                'one': '{} follower',
+                                                'other': '{} followers'}">
+                                    </ng-pluralize>
+                                </p>
+                                <p class="userTab-cardListItem">
+                                    <md-icon class="material-icons">person_add</md-icon>
+                                    <ng-pluralize count="githubUser.userFollowing"
+                                                  when="{'0': 'Following {}',
+                                                'one': 'Following {}',
+                                                'other': 'Following {}'}">
+                                    </ng-pluralize>
+                                </p>
+                            </div>
+                            <md-divider></md-divider>                            
+                            <md-card-actions layout="row" layout-align="end right">
+                                <md-button ng-href="{{githubUser.userUrl}}" class="md-icon-button" aria-label="Github">
+                                    <md-tooltip md-direction="top">GitHub profile</md-tooltip>
+                                    <md-icon class="ion-social-github gitly-icon"></md-icon>
+                                </md-button>
+                                <md-button ng-href="{{githubUser.userBlog}}" class="md-icon-button" aria-label="Website">
+                                    <md-tooltip md-direction="top">Website</md-tooltip>
+                                    <md-icon class="material-icons">public</md-icon>
+                                </md-button>
+                            </md-card-actions>
+                        </md-card-content>
+                    </md-card>
                 </div>
+            </md-content>
+        </div>
     </div>
 </div>
 <div ng-hide="userTabFlag">
