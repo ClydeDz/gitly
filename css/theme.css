@@ -2,6 +2,10 @@
     line-height: 64px;
 }
 
+.userTab-container{
+    min-height:650px;
+}
+
 .hireable-true{
     background-color:#4caf50;
     color:white;
